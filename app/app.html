@@ -21,15 +21,15 @@
   </div>
 
   <ul>
-    <li>
-      <a href="/blog/1">One</a>
-    </li>
-    <li>
-      <a href="/blog/2?q1=v1&q2=v2#hashfrag">Two</a>
-    </li>
-    <li>
-      <a href="/blog/3">Three</a>
-    </li>
+    {{#each articles}}
+      <li>
+        {{#linkTo route='article.show' query='q=search+string' hash='frashfrag'}}
+          <div>
+            {{title}}
+          </div>
+        {{/linkTo}}
+      </li>
+    {{/each}}
   </ul>
 </template>
 

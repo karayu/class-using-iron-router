@@ -7,8 +7,16 @@ body {
 }
 
 .container {
+  margin: 20px auto;
   width: 600px;
-  margin: 0 auto;
+}
+
+.content {
+  margin: 20px 0px;
+}
+
+.breadcrumb {
+  margin: 20px 0px;
 }
 
 footer {

@@ -3,7 +3,7 @@ Articles = new Meteor.Collection('articles');
 Router.route('/', function () {
   this.layout('Layout');
   this.render('Blog');
-});
+}, {name: 'home'});
 
 Router.route('/blog/new', function () {
   this.layout('Layout');
@@ -18,7 +18,6 @@ Router.route('/blog/:_id', function () {
   });
 
   this.render('Article', {});
-
 }, {
   name: 'article.show'
 });

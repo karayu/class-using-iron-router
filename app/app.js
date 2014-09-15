@@ -1,25 +1,24 @@
 Articles = new Meteor.Collection('articles');
 
-Router.route('/', function () {
-  this.layout('Layout');
-  this.render('Blog');
-}, {name: 'home'});
+Router.configure({
+  layoutTemplate: 'Layout'
+});
 
-Router.route('/blog/new', function () {
-  this.layout('Layout');
-  this.render('ArticleNew');
-}, {name: 'blog.new'});
+Router.route('/', {
+  name: 'home',
+  template: 'Blog'
+});
 
-Router.route('/blog/:_id', function () {
-  this.layout('Layout', {
-    data: function () {
-      return Articles.findOne({_id: this.params._id});
-    }
-  });
+Router.route('/blog/new', {
+  name: 'article.new'
+});
 
-  this.render('Article', {});
-}, {
-  name: 'article.show'
+Router.route('/blog/:_id', {
+  name: 'article.show',
+  template: 'Article',
+  data: function () {
+    return Articles.findOne({_id: this.params._id});
+  }
 });
 
 if (Meteor.isClient) {

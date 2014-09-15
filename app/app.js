@@ -8,11 +8,17 @@ Router.route('/', function () {
 Router.route('/blog/new', function () {
   this.layout('Layout');
   this.render('ArticleNew');
-});
+}, {name: 'blog.new'});
 
 Router.route('/blog/:_id', function () {
-  this.layout('Layout');
-  this.render('Article');
+  this.layout('Layout', {
+    data: function () {
+      return Articles.findOne({_id: this.params._id});
+    }
+  });
+
+  this.render('Article', {});
+
 }, {
   name: 'article.show'
 });
@@ -23,7 +29,9 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    Articles.remove({});
+    if (Articles.find().count() > 0)
+      return;
+
     for (var i = 0; i < 3; i++) {
       Articles.insert({
         title: 'Blog Article ' + i,

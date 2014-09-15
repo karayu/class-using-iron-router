@@ -7,18 +7,18 @@
 
 <template name="Layout">
   <div class="container">
+    <div id="new-article">
+      {{#linkTo route="blog.new"}}
+        New Article
+      {{/linkTo}}
+    </div>
+
     {{> yield}}
   </div>
 </template>
 
 <template name="Blog">
   <h1>Blog</h1>
-
-  <div id="new-article">
-    <a href="/blog/new">
-      New Article
-    </a>
-  </div>
 
   <ul>
     {{#each articles}}
@@ -34,7 +34,17 @@
 </template>
 
 <template name="Article">
-  <h1>Article</h1>
+  <h1>
+    {{title}}
+  </h1>
+
+  <div>
+    {{author}}
+  </div>
+
+  <p>
+    {{body}}
+  </p>
 </template>
 
 <template name="ArticleNew">

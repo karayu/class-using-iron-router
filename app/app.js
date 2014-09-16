@@ -1,15 +1,13 @@
 Articles = new Meteor.Collection('articles');
 
 Router.configure({
-  layoutTemplate: 'Layout'
+  layoutTemplate: 'Layout',
+  loadingTemplate: 'Loading'
 });
 
 Router.route('/', {name: 'home'});
 Router.route('/blog/new', {name: 'article.new'});
 Router.route('/blog/:_id', {name: 'article.show'});
-
-if (Meteor.isClient) {
-}
 
 if (Meteor.isServer) {
   var Future = Npm.require('fibers/future');
@@ -17,6 +15,8 @@ if (Meteor.isServer) {
   Meteor.publish('articles', function () {
     var future = new Future;
 
+    // simulate a 5 second delay before the subscription
+    // is "ready"
     setTimeout(Meteor.bindEnvironment(function () {
       future.return(Articles.find());
     }), 5000);

@@ -76,5 +76,27 @@
 </template>
 
 <template name="ArticleNew">
-  <h1>New Article</h1>
+  {{#contentFor "breadcrumbs"}}
+    <li>
+      {{#linkTo route="home"}}
+        Home
+      {{/linkTo}}
+    </li>
+    <li><span class="divider">/</span></li>
+    <li>
+      New Article
+    </li>
+  {{/contentFor}}
+
+  <form id="new-article">
+    <div class="field">
+      <input type="text" name="title" placeholder="Title">
+    </div>
+    <div class="field">
+      <textarea name="body" placeholder="Body..."></textarea>
+    </div>
+    <div class="form-actions">
+      <input class="btn" type="submit" value="Save">
+    </div>
+  </form>
 </template>

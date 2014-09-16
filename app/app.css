@@ -21,3 +21,15 @@ body {
 
 footer {
 }
+
+form {
+  overflow: hidden;
+}
+
+input[type=text], textarea {
+  width: 80%;
+}
+
+textarea {
+  height: 100px;
+}

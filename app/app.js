@@ -8,7 +8,26 @@ Router.route('/', {name: 'home'});
 Router.route('/blog/new', {name: 'article.new'});
 Router.route('/blog/:_id', {name: 'article.show'});
 
+if (Meteor.isClient) {
+}
+
 if (Meteor.isServer) {
+  var Future = Npm.require('fibers/future');
+
+  Meteor.publish('articles', function () {
+    var future = new Future;
+
+    setTimeout(Meteor.bindEnvironment(function () {
+      future.return(Articles.find());
+    }), 5000);
+
+    return future.wait();
+  });
+
+  Meteor.publish('article', function (id) {
+    return Articles.find({_id: id});
+  });
+
   Meteor.startup(function () {
     if (Articles.find().count() > 0)
       return;

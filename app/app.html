@@ -6,6 +6,10 @@
 </body>
 
 <template name="Layout">
+  <div class="login">
+    {{> loginButtons}}
+  </div>
+
   <div class="container">
     <div id="new-article">
       {{#linkTo route="article.new"}}

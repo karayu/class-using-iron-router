@@ -5,6 +5,11 @@ Router.configure({
   loadingTemplate: 'Loading'
 });
 
+Router.plugin('authorize', {
+  only: ['article.new'],
+  notAuthorizedRoute: 'home'
+});
+
 Router.route('/', {name: 'home'});
 Router.route('/blog/new', {name: 'article.new'});
 Router.route('/blog/:_id', {name: 'article.show'});

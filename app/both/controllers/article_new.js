@@ -1,4 +1,8 @@
 ArticleNewController = RouteController.extend({
+  action: function () {
+    this.render();
+  },
+
   sayHello: function () {
     return 'hello world';
   }

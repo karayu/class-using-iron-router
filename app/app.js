@@ -4,26 +4,9 @@ Router.configure({
   layoutTemplate: 'Layout'
 });
 
-Router.route('/', {
-  name: 'home',
-  template: 'Blog'
-});
-
-Router.route('/blog/new', {
-  name: 'article.new'
-});
-
-Router.route('/blog/:_id', {
-  name: 'article.show',
-  template: 'Article',
-  data: function () {
-    return Articles.findOne({_id: this.params._id});
-  }
-});
-
-if (Meteor.isClient) {
-  Template.Blog.articles = function () { return Articles.find(); };
-}
+Router.route('/', {name: 'home'});
+Router.route('/blog/new', {name: 'article.new'});
+Router.route('/blog/:_id', {name: 'article.show'});
 
 if (Meteor.isServer) {
   Meteor.startup(function () {

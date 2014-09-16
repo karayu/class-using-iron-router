@@ -1,0 +1,1 @@
+ArticleNewController = RouteController.extend({});

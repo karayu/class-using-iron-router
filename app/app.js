@@ -10,9 +10,15 @@ Router.plugin('authorize', {
   notAuthorizedRoute: 'home'
 });
 
+Router.use(Router.bodyParser.json());
+
 Router.route('/', {name: 'home'});
 Router.route('/blog/new', {name: 'article.new'});
 Router.route('/blog/:_id', {name: 'article.show'});
+
+Router.route('/webhooks/stripe', {name: 'webhooks.stripe', where: 'server'})
+  .get('get')
+  .post('post');
 
 if (Meteor.isServer) {
   var Future = Npm.require('fibers/future');

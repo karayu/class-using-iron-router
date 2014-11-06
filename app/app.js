@@ -10,7 +10,8 @@ Router.plugin('authorize', {
   notAuthorizedRoute: 'home'
 });
 
-Router.use(Router.bodyParser.json());
+if (Router.bodyParser)
+  Router.use(Router.bodyParser.json());
 
 Router.route('/', {name: 'home'});
 Router.route('/blog/new', {name: 'article.new'});

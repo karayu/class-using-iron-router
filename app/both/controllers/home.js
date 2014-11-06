@@ -3,9 +3,11 @@ HomeController = RouteController.extend({
 
   waitOn: function () {
     return [Meteor.subscribe('articles')];
-  },
-
-  articles: function () {
-    return Articles.find();
   }
 });
+
+HomeController.helpers({
+	articles: function () {
+    return Articles.find();
+  }
+})
